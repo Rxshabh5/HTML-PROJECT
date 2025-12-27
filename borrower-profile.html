@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Borrower Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;font-family:Arial}
+body{display:flex;height:100vh}
+
+/* Sidebar */
+.sidebar{
+width:220px;
+background:#2c3e50;
+color:#fff;
+padding:20px
+}
+.sidebar h2{text-align:center;margin-bottom:25px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:10px;margin-bottom:8px;border-radius:6px}
+.sidebar a{color:#fff;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e}
+
+/* Main */
+.main-content{
+flex:1;
+padding:20px 30px;
+background:url("backgroundafter.jpeg") center/cover no-repeat;
+position:relative;
+}
+.main-content::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(255,255,255,.9);
+z-index:-1
+}
+
+h1{margin-bottom:15px}
+
+.section{
+background:#fff;
+padding:18px;
+border-radius:10px;
+border:1px solid #ddd;
+margin-bottom:15px
+}
+
+.section h2{margin-bottom:10px}
+
+.row{
+display:flex;
+gap:15px
+}
+.box{flex:1}
+
+input{
+width:100%;
+padding:8px;
+margin-bottom:10px;
+border:1px solid #ccc;
+border-radius:5px
+}
+
+button{
+padding:8px 14px;
+background:#2c3e50;
+color:#fff;
+border:none;
+border-radius:6px
+}
+
+.badge{
+padding:5px 10px;
+border-radius:15px;
+font-size:12px;
+font-weight:bold
+}
+.green{background:#e8ffe8;color:#2d8a35}
+.yellow{background:#fff7cc;color:#a57b00}
+</style>
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+<h2>LoanSys</h2>
+<ul>
+<li><a href="borrower.html">Dashboard</a></li>
+<li><a href="borrower-loans.html">My Loans</a></li>
+<li><a href="borrower-applications.html">My Applications</a></li>
+<li><a href="borrower-payments.html">Payments</a></li>
+<li class="active"><a href="borrower-profile.html">Profile</a></li>
+</ul>
+</aside>
+
+<!-- Main -->
+<main class="main-content">
+
+<h1>Borrower Profile</h1>
+
+<!-- Personal Info -->
+<div class="section">
+<h2>Personal Information</h2>
+
+<div class="row">
+<div class="box">
+<label>Name</label>
+<input type="text" value="Rahul Sharma">
+</div>
+
+<div class="box">
+<label>Date of Birth</label>
+<input type="text" value="10-05-2003">
+</div>
+</div>
+
+<div class="row">
+<div class="box">
+<label>Gender</label>
+<input type="text" value="Male">
+</div>
+
+<div class="box">
+<label>Occupation</label>
+<input type="text" value="Student">
+</div>
+</div>
+
+<button>Save Changes</button>
+</div>
+
+<!-- Contact -->
+<div class="section">
+<h2>Contact Details</h2>
+
+<div class="row">
+<div class="box">
+<label>Email</label>
+<input type="email" value="rahul@email.com">
+</div>
+
+<div class="box">
+<label>Phone</label>
+<input type="text" value="+91 9876543210">
+</div>
+</div>
+
+<button>Update Contact</button>
+</div>
+
+<!-- Address -->
+<div class="section">
+<h2>Address Details</h2>
+
+<label>Full Address</label>
+<input type="text" value="House No 10, New Delhi, India">
+
+<label>Pincode</label>
+<input type="text" value="110001">
+
+<button>Update Address</button>
+</div>
+
+<!-- KYC -->
+<div class="section">
+<h2>KYC / Verification</h2>
+
+<p><b>Aadhar:</b> Verified <span class="badge green">Verified</span></p>
+<p><b>PAN:</b> Pending <span class="badge yellow">Pending</span></p>
+
+<button>Upload Documents</button>
+</div>
+
+<!-- Security -->
+<div class="section">
+<h2>Account & Security</h2>
+
+<p><b>Username:</b> Rahul123</p>
+<p><b>Password:</b> ********</p>
+
+<button>Change Password</button>
+</div>
+
+</main>
+</body>
+</html>

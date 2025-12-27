@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Security</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{display:flex;height:100vh;background:#f4f6f9}
+.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
+.sidebar h2{text-align:center;margin-bottom:25px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:12px;margin-bottom:8px;border-radius:6px}
+.sidebar a{color:#fff;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e}
+
+.main-content{
+  flex:1;
+  padding:20px 30px;
+  background-image:url("backgroundafter.jpeg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  position:relative;
+}
+.main-content::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.9);
+  z-index:-1;
+}
+
+header{display:flex;justify-content:space-between;margin-bottom:25px}
+.user-info{background:#2980b9;color:#fff;padding:8px 16px;border-radius:20px}
+
+.grid{
+  display:flex;
+  gap:20px;
+  margin-bottom:25px
+}
+.card{
+  flex:1;
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  text-align:center;
+}
+.card h3{color:#555;margin-bottom:5px}
+.card p{font-size:22px;font-weight:bold;color:#2980b9}
+
+.section{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 2px 6px rgba(0,0,0,.1)
+}
+
+button{
+  padding:8px 14px;
+  background:#2980b9;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-right:10px;
+}
+button:hover{
+  background:#1f6691;
+}
+
+.green{color:green;font-weight:bold}
+.red{color:red;font-weight:bold}
+#logBox{
+  height:180px;
+  background:#f8f8f8;
+  padding:10px;
+  overflow:auto;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+.logLine{margin-bottom:5px;font-size:14px}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+  <ul>
+    <li><a href="admindash.html">Dashboard</a></li>
+    <li><a href="manageusers.html">Manage Users</a></li>
+    <li><a href="transactions.html">Transactions</a></li>
+    <li><a href="reports.html">Reports</a></li>
+    <li class="active"><a href="security.html">Security</a></li>
+    <li><a href="settings.html">Settings</a></li>
+  </ul>
+</aside>
+
+<main class="main-content">
+<header>
+  <h1>Security Center</h1>
+  <div class="user-info">Admin</div>
+</header>
+
+<!-- STATUS CARDS -->
+<section class="grid">
+  <div class="card">
+    <h3>System Status</h3>
+    <p id="sysStatus" class="green">Secure</p>
+  </div>
+
+  <div class="card">
+    <h3>Failed Logins</h3>
+    <p id="failedCount">2</p>
+  </div>
+
+  <div class="card">
+    <h3>2FA Status</h3>
+    <p id="twofa" class="green">Enabled</p>
+  </div>
+</section>
+
+<!-- CONTROLS -->
+<section class="section">
+  <h2>Security Controls</h2>
+  <br>
+
+  <button onclick="toggle2FA()">Toggle 2FA</button>
+  <button onclick="lockSystem()">Lock System</button>
+  <button onclick="fakeThreat()">Simulate Threat</button>
+</section>
+
+<!-- LOGS -->
+<section class="section">
+  <h2>Security Audit Log</h2>
+  <div id="logBox"></div>
+</section>
+
+<script>
+let twofaEnabled = true;
+let failedLogins = 2;
+
+function log(msg){
+  const box = document.getElementById("logBox");
+  const line = document.createElement("div");
+  line.className="logLine";
+  line.innerText = new Date().toLocaleTimeString()+" - "+msg;
+  box.prepend(line);
+}
+
+function toggle2FA(){
+  twofaEnabled = !twofaEnabled;
+  document.getElementById("twofa").innerText = twofaEnabled ? "Enabled" : "Disabled";
+  document.getElementById("twofa").className = twofaEnabled ? "green" : "red";
+  log("2FA status changed to: "+(twofaEnabled?"Enabled":"Disabled"));
+}
+
+function lockSystem(){
+  document.getElementById("sysStatus").innerText="System Locked";
+  document.getElementById("sysStatus").className="red";
+  log("System has been locked by Admin");
+  alert("System Locked Successfully");
+}
+
+function fakeThreat(){
+  failedLogins++;
+  document.getElementById("failedCount").innerText = failedLogins;
+  log("WARNING: Suspicious login detected!");
+}
+</script>
+
+</main>
+
+</body>
+</html>

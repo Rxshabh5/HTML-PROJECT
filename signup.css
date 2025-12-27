@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.signup-hero {
+  height: 100vh;
+  background: url("backgroundlogin.jpeg") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 15, 35, 0.85);
+  z-index: 1;
+}
+
+.signup-container {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  padding: 40px;
+}
+
+.signup-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.signup-container p {
+  color: #cdd7e3;
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.role {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.role-button {
+  background: #fff;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  padding: 18px 36px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 230px;
+}
+
+.role-button:hover {
+  background: #02b3e4;
+  color: white;
+}
+
+.lender:hover {
+  box-shadow: 0 0 10px #02b3e4;
+}
+
+.borrower:hover {
+  box-shadow: 0 0 10px #28c76f;
+}
+
+.admin:hover {
+  box-shadow: 0 0 10px #ff9f43;
+}
+
+.analyst:hover {
+  box-shadow: 0 0 10px #7367f0;
+}

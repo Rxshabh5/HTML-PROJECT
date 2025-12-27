@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Types</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{display:flex;height:100vh}
+.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:10px;margin-bottom:8px;border-radius:6px}
+.sidebar a{color:#fff;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e}
+.main-content{
+flex:1;padding:20px 30px;
+background:url("backgroundafter.jpeg") center/cover no-repeat;
+position:relative}
+.main-content::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.9);z-index:-1}
+.section{background:#fff;padding:20px;border-radius:10px;border:1px solid #ddd;margin-bottom:15px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd}
+th{background:#ecf0f1}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+<ul>
+<li><a href="lenderdash.html">Dashboard</a></li>
+<li><a href="lender-borrowers.html">Borrowers</a></li>
+<li class="active"><a href="lender-loantypes.html">Loan Types</a></li>
+<li><a href="lender-agreements.html">Loan Agreements</a></li>
+<li><a href="lender-settlements.html">Loan Settlements</a></li>
+<li><a href="lender-wallet.html">Wallet</a></li>
+<li><a href="lender-transfers.html">Transfers</a></li>
+<li><a href="lender-transactions.html">Transactions</a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+<h1>Loan Types</h1>
+
+<div class="section">
+<h2>Available Loan Types</h2>
+<table>
+<tr><th>Type</th><th>Interest</th><th>Duration</th></tr>
+<tr><td>Personal Loan</td><td>10%</td><td>24 Months</td></tr>
+<tr><td>Business Loan</td><td>12%</td><td>36 Months</td></tr>
+<tr><td>Education Loan</td><td>8%</td><td>48 Months</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Notes</h2>
+<p>✔ Interest rates are fixed</p>
+<p>✔ Risk monitored by analyst team</p>
+</div>
+
+</main>
+</body>
+</html>

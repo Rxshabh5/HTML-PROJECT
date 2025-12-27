@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Settlements</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;font-family:Arial;box-sizing:border-box}
+body{display:flex;height:100vh}
+.sidebar{width:220px;background:#2c3e50;color:white;padding:20px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:10px;margin-bottom:8px;border-radius:6px}
+.sidebar a{text-decoration:none;color:white;display:block}
+.sidebar li:hover,.active{background:#34495e}
+
+.main-content{
+flex:1;padding:20px 30px;
+background:url("backgroundafter.jpeg") center/cover no-repeat;
+position:relative}
+.main-content::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.9);z-index:-1}
+
+.cards{
+display:flex;
+gap:15px;
+margin-bottom:20px
+}
+.card{
+flex:1;
+background:white;
+padding:20px;
+border-radius:10px;
+border:1px solid #ddd;
+text-align:center
+}
+.card p{
+font-size:22px;
+font-weight:bold
+}
+
+.section{
+background:white;
+padding:20px;
+border-radius:10px;
+border:1px solid #ddd;
+margin-bottom:15px
+}
+
+input,select{
+padding:8px;
+border:1px solid #bbb;
+border-radius:6px;
+margin-right:10px
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px
+}
+th,td{
+padding:10px;
+border-bottom:1px solid #ddd
+}
+th{
+background:#ecf0f1
+}
+
+.status{
+padding:5px 10px;
+border-radius:10px;
+color:white;
+font-size:12px
+}
+
+.pending{background:#f1c40f}
+.approved{background:#27ae60}
+.review{background:#2980b9}
+.rejected{background:#c0392b}
+
+button{
+padding:6px 10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:white
+}
+.view{background:#2980b9}
+.approve{background:#27ae60}
+.reject{background:#c0392b}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+<ul>
+<li><a href="lenderdash.html">Dashboard</a></li>
+<li><a href="lender-borrowers.html">Borrowers</a></li>
+<li><a href="lender-loantypes.html">Loan Types</a></li>
+<li><a href="lender-agreements.html">Loan Agreements</a></li>
+<li class="active"><a href="lender-settlements.html">Loan Settlements</a></li>
+<li><a href="lender-wallet.html">Wallet</a></li>
+<li><a href="lender-transfers.html">Transfers</a></li>
+<li><a href="lender-transactions.html">Transactions</a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<h1>Loan Settlements</h1>
+
+<div class="cards">
+<div class="card">
+<h3>Total Settlement Requests</h3>
+<p>24</p>
+</div>
+
+<div class="card">
+<h3>Approved Settlements</h3>
+<p>14</p>
+</div>
+
+<div class="card">
+<h3>Pending Review</h3>
+<p>8</p>
+</div>
+
+<div class="card">
+<h3>Rejected</h3>
+<p>2</p>
+</div>
+</div>
+
+<div class="section">
+<h2>Search & Filter</h2>
+<input type="text" id="search" placeholder="Search Loan ID or Borrower">
+<select id="filter">
+<option value="all">All</option>
+<option value="pending">Pending</option>
+<option value="approved">Approved</option>
+<option value="review">Under Review</option>
+<option value="rejected">Rejected</option>
+</select>
+<button class="view" onclick="applyFilter()">Apply</button>
+</div>
+
+<div class="section">
+<h2>Settlement Requests</h2>
+
+<table id="tableData">
+<tr>
+<th>Loan ID</th>
+<th>Borrower</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+
+<tr data-status="pending">
+<td>L001</td>
+<td>Rahul Sharma</td>
+<td>₹45,000</td>
+<td><span class="status pending">Pending</span></td>
+<td>
+<button class="view">View</button>
+<button class="approve">Approve</button>
+<button class="reject">Reject</button>
+</td>
+</tr>
+
+<tr data-status="approved">
+<td>L020</td>
+<td>Neha Gupta</td>
+<td>₹70,000</td>
+<td><span class="status approved">Approved</span></td>
+<td>
+<button class="view">View</button>
+</td>
+</tr>
+
+<tr data-status="review">
+<td>L050</td>
+<td>Rohan Mehta</td>
+<td>₹1,20,000</td>
+<td><span class="status review">Under Review</span></td>
+<td>
+<button class="view">View</button>
+<button class="approve">Approve</button>
+<button class="reject">Reject</button>
+</td>
+</tr>
+
+<tr data-status="rejected">
+<td>L077</td>
+<td>Amit Verma</td>
+<td>₹35,000</td>
+<td><span class="status rejected">Rejected</span></td>
+<td>
+<button class="view">View</button>
+</td>
+</tr>
+
+<tr data-status="pending">
+<td>L092</td>
+<td>Priya Singh</td>
+<td>₹90,000</td>
+<td><span class="status pending">Pending</span></td>
+<td>
+<button class="view">View</button>
+<button class="approve">Approve</button>
+<button class="reject">Reject</button>
+</td>
+</tr>
+
+</table>
+</div>
+
+<div class="section">
+<h2>Notes</h2>
+<p>✔ Early settlements require lender confirmation</p>
+<p>✔ High-value settlements are placed under review</p>
+<p>✔ Once approved, settlement cannot be reversed</p>
+</div>
+
+</main>
+
+<script>
+function applyFilter(){
+let value = document.getElementById("filter").value;
+let rows = document.querySelectorAll("#tableData tr[data-status]");
+rows.forEach(r=>{
+let status = r.getAttribute("data-status");
+r.style.display = (value==="all" || value===status) ? "" : "none";
+});
+}
+</script>
+
+</body>
+</html>

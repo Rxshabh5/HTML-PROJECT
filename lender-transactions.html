@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Transactions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;font-family:Arial;box-sizing:border-box}
+body{display:flex;height:100vh}
+.sidebar{width:220px;background:#2c3e50;color:white;padding:20px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:10px;margin-bottom:8px;border-radius:6px}
+.sidebar a{color:white;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e}
+.main-content{
+flex:1;padding:20px 30px;
+background:url("backgroundafter.jpeg") center/cover no-repeat;
+position:relative}
+.main-content::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.9);z-index:-1}
+.section{background:white;padding:20px;border-radius:10px;border:1px solid #ddd;margin-bottom:15px}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #ddd}
+th{background:#ecf0f1}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+<ul>
+<li><a href="lenderdash.html">Dashboard</a></li>
+<li><a href="lender-borrowers.html">Borrowers</a></li>
+<li><a href="lender-loantypes.html">Loan Types</a></li>
+<li><a href="lender-agreements.html">Loan Agreements</a></li>
+<li><a href="lender-settlements.html">Loan Settlements</a></li>
+<li><a href="lender-wallet.html">Wallet</a></li>
+<li><a href="lender-transfers.html">Transfers</a></li>
+<li class="active"><a href="lender-transactions.html">Transactions</a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<h1>Transactions</h1>
+
+<div class="section">
+<table>
+<tr><th>Transaction ID</th><th>Loan ID</th><th>Amount</th><th>Status</th></tr>
+<tr><td>T001</td><td>L001</td><td>₹5,000</td><td>Success</td></tr>
+<tr><td>T002</td><td>L001</td><td>₹5,000</td><td>Success</td></tr>
+<tr><td>T003</td><td>L020</td><td>₹7,000</td><td>Success</td></tr>
+</table>
+</div>
+
+</main>
+</body>
+</html>

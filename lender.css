@@ -1,0 +1,126 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+
+  background-image: url("backgroundafter.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.sidebar {
+  width: 220px;
+  background: #283848cc;
+  color: #fff;
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  padding-top: 26px;
+  border-right: 1px solid #e0e7ef;
+}
+.sidebar h3 {
+  text-align: center;
+  font-size: 1.3em;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+.side-menu {
+  list-style: none;
+  padding: 0 26px;
+}
+.side-menu li {
+  margin-bottom: 17px;
+  font-size: 1.04em;
+  cursor: pointer;
+}
+.side-menu li.active,
+.side-menu li:hover {
+  color: #ffe082;
+}
+.main-content {
+  margin-left: 250px;
+  padding: 38px 36px;
+}
+.dashboard-cards {
+  display: flex;
+  gap: 45px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.card {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-radius: 10px;
+  padding: 18px 32px;
+  min-width: 180px;
+  text-align: center;
+}
+.card h4 {
+  margin: 0 0 8px 0;
+  font-size: 1em;
+  color: #4468a1;
+}
+.card .value {
+  font-size: 1.6em;
+  color: #283848;
+  font-weight: bold;
+}
+.charts-section {
+  display: flex;
+  gap: 38px;
+}
+.chart {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  flex: 1;
+  padding: 20px 28px;
+}
+.chart h5 {
+  margin-bottom: 16px;
+  color: #23567c;
+  font-weight: normal;
+  font-size: 1em;
+}
+.fake-chart {
+  height: 120px;
+  background: linear-gradient(90deg, #e0ecfb 40%, #c7daf2 60%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4468a1;
+  font-size: 1.2em;
+}
+.loan-types {
+  margin-top: 35px;
+  max-width: 650px;
+}
+.loan-types h3 {
+  color: #2b4257;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+summary {
+  font-size: 1.07em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #23567c;
+  margin-top: 18px;
+  outline: none;
+}
+details {
+  margin-bottom: 18px;
+  background: #f4f7fb;
+  padding: 13px 18px;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px rgba(40,56,72,0.04);
+  transition: background 0.2s;
+}
+details[open] {
+  background: #e9f2fd;
+}
+ul li a {
+  text-decoration: none;
+  color: inherit;
+}

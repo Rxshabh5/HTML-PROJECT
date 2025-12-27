@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Borrower — Payments</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{display:flex;height:100vh;background:#f4f6f9;animation:fade .6s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:12px;margin-bottom:8px;border-radius:6px;transition:.3s}
+.sidebar a{color:#fff;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e;transform:translateX(3px)}
+
+.main-content{
+  flex:1;padding:20px 30px;
+  background:url("backgroundafter.jpeg") center/cover no-repeat;
+  position:relative;
+}
+.main-content::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.9);z-index:-1}
+
+.table{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,.1);
+  animation:slide .6s;
+}
+@keyframes slide{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px;border-bottom:1px solid #eee}
+th{background:#ecf0f1}
+
+button{
+  padding:8px 14px;
+  background:#8e44ad;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{background:#6c3594}
+
+#msg{
+  margin-top:12px;
+  font-weight:bold;
+  color:green;
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+  <ul>
+    <li><a href="borrower.html">Dashboard</a></li>
+    <li><a href="borrower-loans.html">My Loans</a></li>
+    <li><a href="borrower-applications.html">My Applications</a></li>
+    <li class="active"><a href="borrower-payments.html">Payments</a></li>
+    <li><a href="borrower-profile.html">Profile</a></li>
+  </ul>
+</aside>
+
+<main class="main-content">
+<h2>Payments</h2>
+
+<div class="table">
+<table>
+<tr><th>Loan ID</th><th>Amount Paid</th><th>Date</th></tr>
+<tr><td>L001</td><td>₹5,000</td><td>12-09-2025</td></tr>
+<tr><td>L020</td><td>₹7,500</td><td>10-09-2025</td></tr>
+</table>
+
+<br>
+<button onclick="pay()">Pay Now</button>
+<p id="msg"></p>
+</div>
+
+<script>
+function pay(){
+ document.getElementById("msg").innerText="Payment Successful ✔";
+}
+</script>
+
+</main>
+</body>
+</html>

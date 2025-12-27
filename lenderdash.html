@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lender Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{display:flex;height:100vh}
+.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
+.sidebar h2{text-align:center;margin-bottom:25px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:10px;margin-bottom:8px;border-radius:6px}
+.sidebar a{text-decoration:none;color:#fff;display:block}
+.sidebar li:hover,.active{background:#34495e}
+
+.main-content{
+flex:1;padding:20px 30px;
+background:url("backgroundafter.jpeg") center/cover no-repeat;
+position:relative}
+.main-content::before{
+content:"";position:absolute;inset:0;background:rgba(255,255,255,.9);z-index:-1}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px
+}
+.greet{font-size:22px;font-weight:bold}
+.time{font-size:14px;color:#444}
+
+.cards{display:flex;gap:15px;margin-bottom:20px}
+.card{flex:1;background:#fff;padding:20px;border-radius:10px;border:1px solid #ddd;text-align:center}
+.card p{font-size:22px;font-weight:bold}
+
+.section{background:#fff;padding:20px;border-radius:10px;border:1px solid #ddd;margin-bottom:15px}
+
+.btns{
+display:flex;
+gap:10px;
+margin-bottom:15px
+}
+button{
+padding:8px 14px;
+background:#2980b9;
+border:none;
+color:#fff;
+border-radius:6px;
+cursor:pointer
+}
+button:hover{background:#1f6691}
+
+.hidden{display:none}
+.calc-box input{
+width:100%;
+padding:8px;
+margin-bottom:10px;
+border:1px solid #ccc;
+border-radius:6px
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+<h2>LoanSys</h2>
+<ul>
+<li class="active"><a href="lenderdash.html">Dashboard</a></li>
+<li><a href="lender-borrowers.html">Borrowers</a></li>
+<li><a href="lender-loantypes.html">Loan Types</a></li>
+<li><a href="lender-agreements.html">Loan Agreements</a></li>
+<li><a href="lender-settlements.html">Loan Settlements</a></li>
+<li><a href="lender-wallet.html">Wallet</a></li>
+<li><a href="lender-transfers.html">Transfers</a></li>
+<li><a href="lender-transactions.html">Transactions</a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<div class="topbar">
+<p class="greet">Welcome, Lender</p>
+<p class="time" id="time"></p>
+</div>
+
+<h1>Lender Dashboard</h1>
+
+<div class="cards">
+<div class="card"><h3>Total Loans Issued</h3><p id="issued">0</p></div>
+<div class="card"><h3>Active Loans</h3><p id="active">0</p></div>
+<div class="card"><h3>Closed Loans</h3><p id="closed">0</p></div>
+<div class="card"><h3>Defaulted</h3><p id="defaulted">0</p></div>
+</div>
+
+<div class="btns">
+<button onclick="showNotifications()">Notifications</button>
+<button onclick="showActivity()">Recent Activity</button>
+<button onclick="showCalculator()">Loan EMI Calculator</button>
+</div>
+
+<div class="section hidden" id="notifications">
+<h2>Notifications</h2>
+<p>• 3 New Borrower Applications</p>
+<p>• 1 Loan Settlement Request</p>
+<p>• EMI Payment Received</p>
+</div>
+
+<div class="section hidden" id="activity">
+<h2>Recent Activity</h2>
+<p>• Loan L001 Approved</p>
+<p>• Borrower Rahul Added</p>
+<p>• Transaction ₹5,000 Completed</p>
+</div>
+
+<div class="section hidden" id="calculator">
+<h2>Loan EMI Calculator</h2>
+<div class="calc-box">
+<input type="number" id="amount" placeholder="Enter Loan Amount (₹)">
+<input type="number" id="rate" placeholder="Interest Rate (%)">
+<input type="number" id="months" placeholder="Duration (Months)">
+<button onclick="calculateEMI()">Calculate EMI</button>
+<p id="emiResult"></p>
+</div>
+</div>
+
+<div class="section">
+<h2>Overview</h2>
+<p>✔ Steady loan growth</p>
+<p>✔ Borrowers are active</p>
+<p>✔ Risk loans under monitoring</p>
+<p>✔ Financial position is stable</p>
+</div>
+
+</main>
+
+<script>
+function updateTime(){
+document.getElementById("time").innerHTML = new Date().toLocaleString();
+}
+setInterval(updateTime,1000);
+
+let issued=0,active=0,closed=0,defaulted=0;
+function animateStats(){
+let i=setInterval(()=>{
+if(issued<85){issued++;document.getElementById("issued").innerHTML=issued;}
+if(active<63){active++;document.getElementById("active").innerHTML=active;}
+if(closed<18){closed++;document.getElementById("closed").innerHTML=closed;}
+if(defaulted<4){defaulted++;document.getElementById("defaulted").innerHTML=defaulted;}
+if(issued===85 && active===63 && closed===18 && defaulted===4) clearInterval(i);
+},20);
+}
+animateStats();
+
+function hideAll(){
+document.getElementById("notifications").classList.add("hidden");
+document.getElementById("activity").classList.add("hidden");
+document.getElementById("calculator").classList.add("hidden");
+}
+
+function showNotifications(){hideAll();document.getElementById("notifications").classList.remove("hidden");}
+function showActivity(){hideAll();document.getElementById("activity").classList.remove("hidden");}
+function showCalculator(){hideAll();document.getElementById("calculator").classList.remove("hidden");}
+
+function calculateEMI(){
+let P = document.getElementById("amount").value;
+let R = document.getElementById("rate").value/1200;
+let N = document.getElementById("months").value;
+if(P==""||R==""||N==""){document.getElementById("emiResult").innerHTML="Enter all fields";return;}
+let emi = (P*R*Math.pow(1+R,N))/(Math.pow(1+R,N)-1);
+document.getElementById("emiResult").innerHTML = "Monthly EMI: ₹"+emi.toFixed(2);
+}
+</script>
+
+</body>
+</html>

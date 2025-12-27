@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Manage Users</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{display:flex;height:100vh;background:#f4f6f9}
+.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
+.sidebar h2{text-align:center;margin-bottom:25px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:12px;margin-bottom:8px;border-radius:6px}
+.sidebar a{color:#fff;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e}
+
+.main-content{
+flex:1;
+padding:20px 30px;
+background-image:url("backgroundafter.jpeg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+position:relative;
+}
+.main-content::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(255,255,255,.9);
+z-index:-1;
+}
+
+header{display:flex;justify-content:space-between;margin-bottom:25px}
+.user-info{background:#2980b9;color:#fff;padding:8px 16px;border-radius:20px}
+
+.cards{
+display:flex;
+gap:15px;
+margin-bottom:20px
+}
+.card{
+flex:1;
+background:white;
+padding:20px;
+border-radius:10px;
+border:1px solid #ddd;
+text-align:center
+}
+.card p{font-size:22px;font-weight:bold}
+
+.section{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 6px rgba(0,0,0,.1);
+margin-bottom:15px
+}
+
+input,select{
+padding:8px;
+border:1px solid #bbb;
+border-radius:6px;
+margin-right:10px
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:10px
+}
+th,td{
+padding:12px;
+border-bottom:1px solid #eee
+}
+th{background:#ecf0f1}
+
+.status{
+padding:5px 10px;
+border-radius:10px;
+color:white;
+font-size:12px
+}
+.active-status{background:#27ae60}
+.inactive-status{background:#c0392b}
+.pending-status{background:#f1c40f}
+
+button{
+padding:6px 10px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:white
+}
+.view{background:#2980b9}
+.block{background:#c0392b}
+.activate{background:#27ae60}
+.delete{background:#8e44ad}
+
+/* Popup */
+.popup{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.6);
+display:none;
+justify-content:center;
+align-items:center;
+}
+.popup-box{
+background:white;
+padding:20px;
+border-radius:10px;
+width:300px;
+text-align:center;
+}
+.close{
+background:#c0392b;
+margin-top:10px
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+<ul>
+<li><a href="admindash.html">Dashboard</a></li>
+<li class="active"><a href="manageusers.html">Manage Users</a></li>
+<li><a href="transactions.html">Transactions</a></li>
+<li><a href="reports.html">Reports</a></li>
+<li><a href="security.html">Security</a></li>
+<li><a href="settings.html">Settings</a></li>
+</ul>
+</aside>
+
+<main class="main-content">
+
+<header>
+<h1>Manage Users</h1>
+<div class="user-info">Admin</div>
+</header>
+
+<div class="cards">
+<div class="card"><h3>Total Users</h3><p>210</p></div>
+<div class="card"><h3>Active Users</h3><p>168</p></div>
+<div class="card"><h3>Pending Approvals</h3><p>12</p></div>
+<div class="card"><h3>Blocked Users</h3><p>5</p></div>
+</div>
+
+<section class="section">
+<h2>Search & Filter</h2>
+<input type="text" id="search" placeholder="Search name or ID">
+<select id="roleFilter">
+<option value="all">All Roles</option>
+<option value="lender">Lender</option>
+<option value="borrower">Borrower</option>
+<option value="analyst">Financial Analyst</option>
+<option value="admin">Admin</option>
+</select>
+
+<select id="statusFilter">
+<option value="all">All Status</option>
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+<option value="pending">Pending</option>
+</select>
+
+<button class="view" onclick="filterUsers()">Apply</button>
+</section>
+
+<section class="section">
+<h2>User List</h2>
+
+<table id="userTable">
+<tr>
+<th>User ID</th>
+<th>Name</th>
+<th>Role</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+<tr data-role="lender" data-status="active">
+<td>U001</td><td>Ravi Sharma</td><td>Lender</td>
+<td class="statusCell"><span class="status active-status">Active</span></td>
+<td>
+<button class="view" onclick="viewUser(this)">View</button>
+<button class="block" onclick="blockUser(this)">Block</button>
+<button class="delete" onclick="deleteUser(this)">Delete</button>
+</td>
+</tr>
+
+<tr data-role="borrower" data-status="inactive">
+<td>U002</td><td>Ananya Singh</td><td>Borrower</td>
+<td class="statusCell"><span class="status inactive-status">Inactive</span></td>
+<td>
+<button class="view" onclick="viewUser(this)">View</button>
+<button class="activate" onclick="activateUser(this)">Activate</button>
+<button class="delete" onclick="deleteUser(this)">Delete</button>
+</td>
+</tr>
+
+<tr data-role="borrower" data-status="active">
+<td>U003</td><td>Vikas Rao</td><td>Borrower</td>
+<td class="statusCell"><span class="status active-status">Active</span></td>
+<td>
+<button class="view" onclick="viewUser(this)">View</button>
+<button class="block" onclick="blockUser(this)">Block</button>
+<button class="delete" onclick="deleteUser(this)">Delete</button>
+</td>
+</tr>
+
+<tr data-role="analyst" data-status="pending">
+<td>U004</td><td>Neeraj Patel</td><td>Financial Analyst</td>
+<td class="statusCell"><span class="status pending-status">Pending</span></td>
+<td>
+<button class="view" onclick="viewUser(this)">View</button>
+<button class="activate" onclick="activateUser(this)">Approve</button>
+<button class="delete" onclick="deleteUser(this)">Delete</button>
+</td>
+</tr>
+
+<tr data-role="admin" data-status="active">
+<td>U005</td><td>Admin User</td><td>Admin</td>
+<td class="statusCell"><span class="status active-status">Active</span></td>
+<td>
+<button class="view" onclick="viewUser(this)">View</button>
+</td>
+</tr>
+
+</table>
+</section>
+
+<section class="section">
+<h2>Admin Notes</h2>
+<p>✔ Monitor suspicious users regularly</p>
+<p>✔ Pending users must be verified before approval</p>
+<p>✔ Block only in case of violations</p>
+</section>
+
+</main>
+
+<div class="popup" id="popup">
+<div class="popup-box">
+<h2>User Details</h2>
+<p id="popupText"></p>
+<button class="close" onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<script>
+function filterUsers(){
+let role=document.getElementById("roleFilter").value;
+let status=document.getElementById("statusFilter").value;
+let rows=document.querySelectorAll("#userTable tr[data-role]");
+
+rows.forEach(r=>{
+let rRole=r.getAttribute("data-role");
+let rStatus=r.getAttribute("data-status");
+
+r.style.display=
+(role==="all"||role===rRole)&&(status==="all"||status===rStatus)
+? "" : "none";
+});
+}
+
+function viewUser(btn){
+let row=btn.closest("tr");
+let data=`ID: ${row.cells[0].innerText}
+Name: ${row.cells[1].innerText}
+Role: ${row.cells[2].innerText}
+Status: ${row.cells[3].innerText}`;
+document.getElementById("popupText").innerText=data;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function blockUser(btn){
+  let row = btn.closest("tr");
+  row.setAttribute("data-status","inactive");
+  row.querySelector(".statusCell").innerHTML =
+    '<span class="status inactive-status">Inactive</span>';
+
+  btn.outerHTML =
+    '<button class="activate" onclick="activateUser(this)">Activate</button>';
+
+  alert("User Blocked");
+}
+
+function activateUser(btn){
+  let row = btn.closest("tr");
+  row.setAttribute("data-status","active");
+  row.querySelector(".statusCell").innerHTML =
+    '<span class="status active-status">Active</span>';
+
+  btn.outerHTML =
+    '<button class="block" onclick="blockUser(this)">Block</button>';
+
+  alert("User Activated / Approved");
+}
+
+
+function deleteUser(btn){
+if(confirm("Delete this user?")){
+btn.closest("tr").remove();
+}
+}
+</script>
+
+</body>
+</html>

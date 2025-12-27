@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Transactions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{display:flex;height:100vh;background:#f4f6f9}
+.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
+.sidebar h2{text-align:center;margin-bottom:25px}
+.sidebar ul{list-style:none}
+.sidebar li{padding:12px;margin-bottom:8px;border-radius:6px}
+.sidebar a{color:#fff;text-decoration:none;display:block}
+.sidebar li:hover,.active{background:#34495e}
+
+.main-content{
+  flex:1;
+  padding:20px 30px;
+  background-image: url("backgroundafter.jpeg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  position:relative;
+}
+
+header{display:flex;justify-content:space-between;margin-bottom:25px}
+.user-info{background:#2980b9;color:#fff;padding:8px 16px;border-radius:20px}
+
+.table-section{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:12px;border-bottom:1px solid #eee}
+th{background:#ecf0f1}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+  <ul>
+    <li class="active"><a href="admindash.html">Dashboard</a></li>
+    <li><a href="manageusers.html">Manage Users</a></li>
+    <li><a href="transactions.html">Transactions</a></li>
+    <li><a href="reports.html">Reports</a></li>
+    <li><a href="security.html">Security</a></li>
+    <li><a href="settings.html">Settings</a></li>
+  </ul>
+</aside>
+
+<main class="main-content">
+<header>
+  <h1>Recent Transactions</h1>
+  <div class="user-info">Admin</div>
+</header>
+
+<section class="table-section">
+<table>
+<thead>
+<tr>
+  <th>Transaction ID</th>
+  <th>User</th>
+  <th>Type</th>
+  <th>Amount</th>
+  <th>Date</th>
+  <th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>TXN1001</td>
+  <td>Ravi Sharma</td>
+  <td>Loan Payment</td>
+  <td>₹5,000</td>
+  <td>12-09-2025</td>
+  <td>Completed</td>
+</tr>
+<tr>
+  <td>TXN1002</td>
+  <td>Ananya Singh</td>
+  <td>Loan Disbursal</td>
+  <td>₹80,000</td>
+  <td>11-09-2025</td>
+  <td>Pending</td>
+</tr>
+<tr>
+  <td>TXN1003</td>
+  <td>Vikas Rao</td>
+  <td>Penalty Fee</td>
+  <td>₹1,200</td>
+  <td>10-09-2025</td>
+  <td>Failed</td>
+</tr>
+</tbody>
+</table>
+</section>
+</main>
+
+</body>
+</html>

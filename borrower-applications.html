@@ -1,24 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Applications</title>
+<title>My Applications</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 *{margin:0;padding:0;font-family:Arial}
 body{display:flex;height:100vh}
-.sidebar{width:220px;background:#2c3e50;color:#fff;padding:20px}
-.sidebar li{padding:10px;margin-bottom:8px;border-radius:6px}
-.sidebar a{color:#fff;text-decoration:none;display:block}
-.sidebar li:hover,.active{background:#34495e}
+.sidebar{
+width:220px;
+background:#2c3e50;
+color:#fff;
+padding:20px
+}
+.sidebar li{
+padding:10px;
+margin-bottom:8px;
+border-radius:6px
+}
+.sidebar a{
+color:#fff;
+text-decoration:none;
+display:block
+}
+.sidebar li:hover,.active{
+background:#34495e
+}
 
 .main-content{
-flex:1;padding:20px 30px;
+flex:1;
+padding:20px 30px;
 background:url("backgroundafter.jpeg") center/cover no-repeat;
 position:relative;
 }
-.main-content::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.9);z-index:-1}
+.main-content::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(255,255,255,.9);
+z-index:-1
+}
 
-.section{background:#fff;padding:20px;border-radius:10px}
+.section{
+background:white;
+padding:20px;
+border-radius:10px;
+border:1px solid #ddd;
+margin-bottom:15px
+}
+
+.app{
+background:#f8f9fa;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-bottom:10px
+}
+
+.status{
+padding:5px 10px;
+border-radius:10px;
+color:white;
+font-size:12px
+}
+.approved{background:#27ae60}
+.pending{background:#f1c40f}
+.rejected{background:#c0392b}
+
+button{
+padding:8px 14px;
+border:none;
+background:#2980b9;
+color:white;
+border-radius:6px;
+cursor:pointer
+}
+button:hover{
+background:#1f6691
+}
+
+/* Popup Form */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+display:none;
+justify-content:center;
+align-items:center
+}
+.box{
+background:white;
+padding:20px;
+border-radius:10px;
+width:330px
+}
+.box h2{
+text-align:center;
+margin-bottom:10px
+}
+input,select{
+width:100%;
+padding:8px;
+margin-bottom:10px;
+border-radius:6px;
+border:1px solid #aaa
+}
+.close{
+background:#c0392b
+}
 </style>
 </head>
 
@@ -27,30 +119,84 @@ position:relative;
 <aside class="sidebar">
 <ul>
 <li><a href="borrower.html">Dashboard</a></li>
-<li><a href="borrower-loans.html">My Loans</a></li>
 <li class="active"><a href="borrower-applications.html">My Applications</a></li>
 <li><a href="borrower-payments.html">Payments</a></li>
-<li><a href="borrower-statements.html">Statements</a></li>
-<li><a href="borrower-documents.html">Documents</a></li>
-<li><a href="borrower-notifications.html">Notifications</a></li>
-<li><a href="borrower-support.html">Support</a></li>
 <li><a href="borrower-profile.html">Profile</a></li>
 </ul>
 </aside>
 
 <main class="main-content">
-<h2>My Applications</h2>
+
+<h1>My Applications</h1>
 
 <div class="section">
-<p><b>Application ID:</b> B101</p>
-<p><b>Amount:</b> ₹60,000</p>
-<p><b>Status:</b> Approved</p>
-<hr>
-<p><b>Application ID:</b> B102</p>
-<p><b>Amount:</b> ₹90,000</p>
-<p><b>Status:</b> Pending</p>
+<h2>Loan Applications Summary</h2>
+<p>• Total Applications: 4</p>
+<p>• Approved: 2</p>
+<p>• Pending: 1</p>
+<p>• Rejected: 1</p>
+<br>
+<button onclick="openForm()">Apply for New Loan</button>
+</div>
+
+<div class="section">
+<h2>Application History</h2>
+
+<div class="app">
+<b>Application ID:</b> B101 <br>
+<b>Amount:</b> ₹60,000 <br>
+<b>Status:</b> <span class="status approved">Approved</span>
+</div>
+
+<div class="app">
+<b>Application ID:</b> B102 <br>
+<b>Amount:</b> ₹90,000 <br>
+<b>Status:</b> <span class="status pending">Pending</span>
+</div>
+
+<div class="app">
+<b>Application ID:</b> B088 <br>
+<b>Amount:</b> ₹30,000 <br>
+<b>Status:</b> <span class="status approved">Approved</span>
+</div>
+
+<div class="app">
+<b>Application ID:</b> B066 <br>
+<b>Amount:</b> ₹1,20,000 <br>
+<b>Status:</b> <span class="status rejected">Rejected</span>
+</div>
+
 </div>
 
 </main>
+
+<div class="popup" id="popup">
+<div class="box">
+<h2>Apply for Loan</h2>
+
+<input type="number" placeholder="Enter Loan Amount (₹)">
+<input type="number" placeholder="Expected EMI Capacity (₹)">
+<select>
+<option>Select Loan Type</option>
+<option>Personal Loan</option>
+<option>Education Loan</option>
+<option>Business Loan</option>
+</select>
+<input type="text" placeholder="Purpose of Loan">
+<button>Submit Application</button>
+<button class="close" onclick="closeForm()">Cancel</button>
+
+</div>
+</div>
+
+<script>
+function openForm(){
+document.getElementById("popup").style.display="flex";
+}
+function closeForm(){
+document.getElementById("popup").style.display="none";
+}
+</script>
+
 </body>
 </html>
